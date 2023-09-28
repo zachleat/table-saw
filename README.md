@@ -1,6 +1,6 @@
 # `table-saw`
 
-A small structural-only Web Component for responsive `<table>` elements. Heavily inspired by [Filament Group’s Tablesaw Stack jQuery plugin](https://github.com/filamentgroup/tablesaw).
+A small structural-only zero-dependency Web Component for responsive `<table>` elements. Heavily inspired by [Filament Group’s Tablesaw Stack jQuery plugin](https://github.com/filamentgroup/tablesaw).
 
 ## Example
 
@@ -18,6 +18,8 @@ A small structural-only Web Component for responsive `<table>` elements. Heavily
 Supports one or many `<table>` child elements.
 
 ## Installation
+
+Install via [npm on `@zachleat/table-saw`](https://www.npmjs.com/package/@zachleat/table-saw).
 
 ```sh
 npm install @zachleat/table-saw
