@@ -10,19 +10,17 @@ A small structural-only zero-dependency Web Component for responsive `<table>` e
 
 <!-- stacks below 640px -->
 <table-saw>
-	<table>
-		<!-- some HTML omitted for brevity -->
-	</table>
+	<table><!-- some HTML omitted for brevity --></table>
 </table-saw>
 
 <!-- stacks below 400px -->
 <table-saw media="(max-width: 24.9375em)">
-	<!-- … -->
+	<table><!-- … --></table>
 </table-saw>
 
 <!-- stack columns are 50% and 50% width -->
 <table-saw ratio="1/1">
-	<!-- … -->
+	<table><!-- … --></table>
 </table-saw>
 ```
 
