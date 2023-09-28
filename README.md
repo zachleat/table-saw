@@ -16,7 +16,7 @@ A small structural-only zero-dependency Web Component for responsive `<table>` e
 </table-saw>
 
 <!-- stacks below 400px viewport -->
-<table-saw media="(max-width: 24.9375em)">
+<table-saw breakpoint="(max-width: 24.9375em)">
 	<table><!-- … --></table>
 </table-saw>
 
@@ -31,7 +31,8 @@ A small structural-only zero-dependency Web Component for responsive `<table>` e
 </table-saw>
 ```
 
-* Use `media` attribute to set the breakpoint (default:`(max-width: 39.9375em)`).
+* Use `breakpoint` attribute to set the breakpoint (default:`(max-width: 39.9375em)`).
+* Use `type="container"` attribute to use container queries instead of viewport-based media queries (default: `type="media"`).
 * Use `ratio` attribute to override the small viewport column ratio (default: `1/2`).
 * Use `zero-padding` attribute to remove small viewport padding on table cells.
 
@@ -46,6 +47,7 @@ npm install @zachleat/table-saw
 ## Features
 
 * Supports one or many `<table>` child elements.
+* Works with viewport media queries or container queries.
 * Uses CSS grid for small viewport alignment.
 * Falls back to regular table before or without JavaScript.
 * Cuts the mustard on [`CSSStyleSheet.prototype.replaceSync`](https://caniuse.com/mdn-api_cssstylesheet_replacesync)

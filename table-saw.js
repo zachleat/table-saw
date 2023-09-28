@@ -1,11 +1,16 @@
 class Tablesaw extends HTMLElement {
+	static identifiers = {};
+
 	constructor() {
 		super();
 
 		this.autoOffset = 50;
+		this._needsStylesheet = true;
 
 		this.attrs = {
-			breakpoint: "media",
+			breakpoint: "breakpoint",
+			breakpointBackwardsCompat: "media",
+			type: "type",
 			ratio: "ratio",
 		};
 
@@ -21,33 +26,43 @@ class Tablesaw extends HTMLElement {
 		this.props = {
 			ratio: "--table-saw-ratio",
 		};
+	}
 
-		this.css = `table-saw.active thead :is(th, td) {
-	position: absolute;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	clip: rect(1px, 1px, 1px, 1px);
-}
-table-saw.active :is(tbody, tfoot) tr {
+	generateCss(breakpoint, type) {
+		return `
+table-saw.${this._identifier} {
 	display: block;
-	margin-bottom: 1em;
-}
-table-saw.active :is(tbody, tfoot) :is(th, td) {
-	display: grid;
-	gap: 0 1em;
-	grid-template-columns: var(--table-saw-ratio, ${this.defaults.ratio});
-}
-table-saw[zero-padding].active :is(tbody, tfoot) :is(th, td) {
-	padding-left: 0;
-	padding-right: 0;
+	${type === "container" ? "container-type: inline-size;" : ""}
 }
 
-table-saw .table-saw-label {
-	display: none;
-}
-table-saw.active .table-saw-label {
-	display: revert !important;
+@${type} ${breakpoint} {
+	table-saw.${this._identifier} thead :is(th, td) {
+		position: absolute;
+		height: 1px;
+		width: 1px;
+		overflow: hidden;
+		clip: rect(1px, 1px, 1px, 1px);
+	}
+	table-saw.${this._identifier} :is(tbody, tfoot) tr {
+		display: block;
+		margin-bottom: 1em;
+	}
+	table-saw.${this._identifier} :is(tbody, tfoot) :is(th, td) {
+		display: grid;
+		gap: 0 1em;
+		grid-template-columns: var(--table-saw-ratio, ${this.defaults.ratio});
+	}
+	table-saw.${this._identifier}[zero-padding] :is(tbody, tfoot) :is(th, td) {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	table-saw.${this._identifier} .table-saw-label {
+		display: none;
+	}
+	table-saw.${this._identifier} .table-saw-label {
+		display: revert !important;
+	}
 }`;
 	}
 
@@ -58,58 +73,36 @@ table-saw.active .table-saw-label {
 			return;
 		}
 
-		this.init();
+		this.addHeaders();
+		this.setRatio();
 
-		// we *could* pass { media: this.getAttribute(this.attrs.breakpoint) } in
-		// but then the breakpoints would be global and we want per-table breakpoints
-		let sheet = new CSSStyleSheet();
-		sheet.replaceSync(this.css);
-
-		// Only add stylesheet once
-		if(document.adoptedStyleSheets?.[0]?.cssRules?.[0]?.cssText !== sheet.cssRules[0].cssText) {
-			document.adoptedStyleSheets.push(sheet);
-		}
-	}
-
-	init() {
-		let added = this.addHeaders();
-
-		if(added === false) {
-			console.error("Could not find any `<th>` elements for Tablesaw web component.", this);
+		if(!this._needsStylesheet) {
 			return;
 		}
 
-		this.setRatio();
+		let sheet = new CSSStyleSheet();
+		let breakpoint = this.getAttribute(this.attrs.breakpoint) || this.getAttribute(this.attrs.breakpointBackwardsCompat) || this.defaults.breakpoint;
+		let type = this.getAttribute(this.attrs.type) || "media";
 
-		let breakpoint = this.getAttribute(this.attrs.breakpoint) || this.defaults.breakpoint;
+		this._identifier = `ts_${type.slice(0, 1)}${breakpoint.replace(/[^a-z0-9]/gi, "_")}`;
+		this.classList.add(this._identifier);
 
-		Tablesaw.onmedia(breakpoint, (matches) => {
-			this.classList[matches ? "add" : "remove"](this.classes.active);
-		});
-	}
+		if(!Tablesaw.identifiers[this._identifier]) {
+			let css = this.generateCss(breakpoint, type);
+			sheet.replaceSync(css);
 
-	static onmedia(query, callback) {
-		let mm = {
-			matches: true
-		};
+			document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
 
-		if(query && ("matchMedia" in window)) {
-			mm = window.matchMedia(query);
+			Tablesaw.identifiers[this._identifier] = true;
 		}
-
-		if(mm.matches) {
-			callback(true);
-		}
-
-		mm.addListener(e => {
-			callback(e.matches);
-		});
 	}
 
 	addHeaders() {
 		let labels = Array.from(this.querySelectorAll("thead th")).map(entry => entry.innerText);
 		if(labels.length === 0) {
-			return false;
+			this._needsStylesheet = false;
+			console.error("No `<th>` elements for Tablesaw were found:", this);
+			return;
 		}
 
 		let nodes = [];
