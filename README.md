@@ -24,10 +24,16 @@ A small structural-only zero-dependency Web Component for responsive `<table>` e
 <table-saw ratio="1/1">
 	<table><!-- … --></table>
 </table-saw>
+
+<!-- Remove left/right padding on table cells when stacked -->
+<table-saw zero-padding>
+	<table><!-- … --></table>
+</table-saw>
 ```
 
-* Use `media` attribute to set the breakpoint (default `(max-width: 39.9375em)`, e.g. `<table-saw media="(max-width: 24.9375em)">`).
-* Use `ratio` attribute to override the small viewport column ratio (default `1/2`, e.g. `<table-saw ratio="1/1">`).
+* Use `media` attribute to set the breakpoint (default:`(max-width: 39.9375em)`).
+* Use `ratio` attribute to override the small viewport column ratio (default: `1/2`).
+* Use `zero-padding` attribute to remove small viewport padding on table cells.
 
 ## Installation
 

@@ -22,26 +22,25 @@ class Tablesaw extends HTMLElement {
 			ratio: "--table-saw-ratio",
 		};
 
-		this.css = `table-saw.active thead td,
-table-saw.active thead th {
+		this.css = `table-saw.active thead :is(th, td) {
 	position: absolute;
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
 	clip: rect(1px, 1px, 1px, 1px);
 }
-table-saw.active tbody tr,
-table-saw.active tfoot tr {
+table-saw.active :is(tbody, tfoot) tr {
 	display: block;
 	margin-bottom: 1em;
 }
-table-saw.active tbody td,
-table-saw.active tbody th,
-table-saw.active tfoot td,
-table-saw.active tfoot th {
+table-saw.active :is(tbody, tfoot) :is(th, td) {
 	display: grid;
 	gap: 0 1em;
 	grid-template-columns: var(--table-saw-ratio, ${this.defaults.ratio});
+}
+table-saw[zero-padding].active :is(tbody, tfoot) :is(th, td) {
+	padding-left: 0;
+	padding-right: 0;
 }
 
 table-saw .table-saw-label {
