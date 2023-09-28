@@ -17,6 +17,12 @@ A small structural-only Web Component for responsive `<table>` elements. Heavily
 
 Supports one or many `<table>` child elements.
 
+## Installation
+
+```sh
+npm install @zachleat/table-saw
+```
+
 ## API
 
 * Use `media` attribute to set the breakpoint (default `(max-width: 39.9375em)`, e.g. `<table-saw media="(max-width: 24.9375em)">`).
