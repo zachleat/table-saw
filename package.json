@@ -1,0 +1,26 @@
+{
+  "name": "@zachleat/table-saw",
+  "version": "1.0.0",
+  "description": "A small web component for responsive <table> elements.",
+  "main": "table-saw.js",
+  "scripts": {
+    "start": "npx http-server ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachleat/table-saw.git"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/zachleat/table-saw/issues"
+  },
+  "author": {
+    "name": "Zach Leatherman",
+    "email": "zachleatherman@gmail.com",
+    "url": "https://zachleat.com/"
+  },
+  "homepage": "https://github.com/zachleat/table-saw#readme"
+}

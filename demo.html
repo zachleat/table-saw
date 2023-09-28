@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="" />
+		<title></title>
+		<style>
+		/* Demo styles */
+		td {
+			padding: .25em;
+		}
+		</style>
+		<script type="module" src="table-saw.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Tablesaw Web Component Demo</h1>
+			<p>Return to <a href="https://github.com/zachleat/table-saw/">source code on GitHub</a>.</p>
+		</header>
+		<main>
+			<table-saw ratio="1/1">
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">Movie Title</th>
+							<th scope="col">Rank</th>
+							<th scope="col">Year</th>
+							<th scope="col"><abbr title="Rotten Tomato Rating">Rating</abbr></th>
+							<th scope="col">Gross</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="title"><a href="http://en.wikipedia.org/wiki/Avatar_(2009_film)">Avatar</a></td>
+							<td>1</td>
+							<td>2009</td>
+							<td>83%</td>
+							<td>$2.7B</td>
+						</tr>
+						<tr>
+							<td class="title"><a href="http://en.wikipedia.org/wiki/Titanic_(1997_film)">Titanic</a></td>
+							<td>2</td>
+							<td>1997</td>
+							<td>88%</td>
+							<td>$2.1B</td>
+						</tr>
+						<tr>
+							<td class="title"><a href="http://en.wikipedia.org/wiki/The_Avengers_(2012_film)">The Avengers</a></td>
+							<td>3</td>
+							<td>2012</td>
+							<td>92%</td>
+							<td>$1.5B</td>
+						</tr>
+						<tr>
+							<td class="title"><a href="http://en.wikipedia.org/wiki/Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_2">Harry Potter and the Deathly Hallows—Part 2</a></td>
+							<td>4</td>
+							<td>2011</td>
+							<td>96%</td>
+							<td>$1.3B</td>
+						</tr>
+						<tr>
+							<td class="title"><a href="http://en.wikipedia.org/wiki/Frozen_(2013_film)">Frozen</a></td>
+							<td>5</td>
+							<td>2013</td>
+							<td>89%</td>
+							<td>$1.2B</td>
+						</tr>
+						<tr>
+							<td class="title"><a href="http://en.wikipedia.org/wiki/Iron_Man_3">Iron Man 3</a></td>
+							<td>6</td>
+							<td>2013</td>
+							<td>78%</td>
+							<td>$1.2B</td>
+						</tr>
+						<tr>
+							<td class="title"><a href="http://en.wikipedia.org/wiki/Transformers:_Dark_of_the_Moon">Transformers: Dark of the Moon</a></td>
+							<td>7</td>
+							<td>2011</td>
+							<td>36%</td>
+							<td>$1.1B</td>
+						</tr>
+						<tr>
+							<td class="title"><a href="http://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Return_of_the_King">The Lord of the Rings: The Return of the King</a></td>
+							<td>8</td>
+							<td>2003</td>
+							<td>95%</td>
+							<td>$1.1B</td>
+						</tr>
+						<tr>
+							<td class="title"><a href="http://en.wikipedia.org/wiki/Skyfall">Skyfall</a></td>
+							<td>9</td>
+							<td>2012</td>
+							<td>92%</td>
+							<td>$1.1B</td>
+						</tr>
+						<tr>
+							<td class="title"><a href="http://en.wikipedia.org/wiki/Transformers:_Age_of_Extinction">Transformers: Age of Extinction</a></td>
+							<td>10</td>
+							<td>2014</td>
+							<td>18%</td>
+							<td>$1.0B</td>
+						</tr>
+					</tbody>
+				</table>
+			</table-saw>
+
+			<table-saw media="(max-width: 43.6875em)">
+				<h2>First table</h2>
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">Pricing Strategies</th>
+							<th scope="col">Hourly-based</th>
+							<th scope="col">Project-based</th>
+							<th scope="col">Value-based</th>
+							<th scope="col">Retainer-based</th>
+							<th scope="col">Tier-based</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Overview</strong></td>
+							<td>Pricing per hour.</td>
+							<td>Fixed price per project.</td>
+							<td>Fixed price based on value delivered.</td>
+							<td>Fixed price for a set number of hours.</td>
+							<td>Fixed price packages at different price points.</td>
+						</tr>
+						<tr>
+							<td><strong>Benefits</strong></td>
+							<td>Straightforward and easy to calculate.</td>
+							<td>Ensures budget predictability, and encourages efficiency.</td>
+							<td>
+								Higher earnings when the impact is significant. Emphasizes
+								results.
+							</td>
+							<td>
+								Ensures a steady and predictable income stream. Builds longterm
+								business relationships.
+							</td>
+							<td>
+								Caters to various client needs and budgets. Simplifies clients’
+								decision-making.
+							</td>
+						</tr>
+						<tr>
+							<td><strong>Challenges</strong></td>
+							<td>
+								May incentivize slower work. Emphasizes hours worked rather than
+								value of work.
+							</td>
+							<td>
+								Unforeseen changes or requests can lead to scope creep, and
+								threaten profitability.
+							</td>
+							<td>
+								Dependent on ability to communicate the value delivered
+								effectively.
+							</td>
+							<td>Dependent on client’s trust.</td>
+							<td>
+								Lack of transparency in terms and pricing may cause confusion.
+							</td>
+						</tr>
+						<tr>
+							<td><strong>Ideal projects or clients</strong></td>
+							<td>
+								Small projects, or projects subject to change due to timelines
+								or requirements.
+							</td>
+							<td>Projects with clear expectations and scope.</td>
+							<td>Clients with clear pain points and business goals.</td>
+							<td>Repeat and ongoing client projects.</td>
+							<td>Client roster with widely varying needs and budgets.</td>
+						</tr>
+					</tbody>
+				</table>
+				<h2>Second table</h2>
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">Pricing Strategies</th>
+							<th scope="col">Hourly-based</th>
+							<th scope="col">Project-based</th>
+							<th scope="col">Value-based</th>
+							<th scope="col">Retainer-based</th>
+							<th scope="col">Tier-based</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Overview</strong></td>
+							<td>Pricing per hour.</td>
+							<td>Fixed price per project.</td>
+							<td>Fixed price based on value delivered.</td>
+							<td>Fixed price for a set number of hours.</td>
+							<td>Fixed price packages at different price points.</td>
+						</tr>
+						<tr>
+							<td><strong>Benefits</strong></td>
+							<td>Straightforward and easy to calculate.</td>
+							<td>Ensures budget predictability, and encourages efficiency.</td>
+							<td>
+								Higher earnings when the impact is significant. Emphasizes
+								results.
+							</td>
+							<td>
+								Ensures a steady and predictable income stream. Builds longterm
+								business relationships.
+							</td>
+							<td>
+								Caters to various client needs and budgets. Simplifies clients’
+								decision-making.
+							</td>
+						</tr>
+						<tr>
+							<td><strong>Challenges</strong></td>
+							<td>
+								May incentivize slower work. Emphasizes hours worked rather than
+								value of work.
+							</td>
+							<td>
+								Unforeseen changes or requests can lead to scope creep, and
+								threaten profitability.
+							</td>
+							<td>
+								Dependent on ability to communicate the value delivered
+								effectively.
+							</td>
+							<td>Dependent on client’s trust.</td>
+							<td>
+								Lack of transparency in terms and pricing may cause confusion.
+							</td>
+						</tr>
+						<tr>
+							<td><strong>Ideal projects or clients</strong></td>
+							<td>
+								Small projects, or projects subject to change due to timelines
+								or requirements.
+							</td>
+							<td>Projects with clear expectations and scope.</td>
+							<td>Clients with clear pain points and business goals.</td>
+							<td>Repeat and ongoing client projects.</td>
+							<td>Client roster with widely varying needs and budgets.</td>
+						</tr>
+					</tbody>
+				</table>
+			</table-saw>
+
+			<h2>Missing `th` elements</h2>
+			<table-saw media="(max-width: 43.6875em)">
+				<table>
+					<thead>
+						<tr>
+							<td>Pricing Strategies</td>
+							<td>Hourly-based</td>
+							<td>Project-based</td>
+							<td>Value-based</td>
+							<td>Retainer-based</td>
+							<td>Tier-based</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Ideal projects or clients</strong></td>
+							<td>
+								Small projects, or projects subject to change due to timelines
+								or requirements.
+							</td>
+							<td>Projects with clear expectations and scope.</td>
+							<td>Clients with clear pain points and business goals.</td>
+							<td>Repeat and ongoing client projects.</td>
+							<td>Client roster with widely varying needs and budgets.</td>
+						</tr>
+					</tbody>
+				</table>
+			</table-saw>
+		</main>
+	</body>
+</html>
