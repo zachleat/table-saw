@@ -8,12 +8,12 @@ A small structural-only zero-dependency Web Component for responsive `<table>` e
 <!-- Note: requires `type="module"` -->
 <script type="module" src="table-saw.js"></script>
 
-<!-- stacks below 640px -->
+<!-- stacks below 640px viewport -->
 <table-saw>
 	<table><!-- some HTML omitted for brevity --></table>
 </table-saw>
 
-<!-- stacks below 400px -->
+<!-- stacks below 400px viewport -->
 <table-saw media="(max-width: 24.9375em)">
 	<table><!-- … --></table>
 </table-saw>
