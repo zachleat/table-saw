@@ -2,6 +2,8 @@
 
 A small structural-only zero-dependency Web Component for responsive `<table>` elements. Heavily inspired by [Filament Group’s Tablesaw Stack jQuery plugin](https://github.com/filamentgroup/tablesaw).
 
+## [Demo](https://zachleat.github.io/table-saw/demo.html)
+
 ## Examples
 
 ```html
