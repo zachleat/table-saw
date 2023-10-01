@@ -38,7 +38,9 @@ A small structural-only zero-dependency Web Component for responsive `<table>` e
 
 ## Installation
 
-Install via [npm on `@zachleat/table-saw`](https://www.npmjs.com/package/@zachleat/table-saw).
+For a truly zero-dependency experience, [download a tagged version](https://github.com/zachleat/table-saw/tags) and follow [the usage instructions above](#examples).
+
+Or, install via [npm on `@zachleat/table-saw`](https://www.npmjs.com/package/@zachleat/table-saw).
 
 ```sh
 npm install @zachleat/table-saw
