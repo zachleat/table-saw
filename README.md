@@ -38,12 +38,30 @@ A small structural-only zero-dependency Web Component for responsive `<table>` e
 
 ## Installation
 
-For a truly zero-dependency experience, [download a tagged version](https://github.com/zachleat/table-saw/tags) and follow [the usage instructions above](#examples).
+You have a few options (choose one of these):
 
-Or, install via [npm on `@zachleat/table-saw`](https://www.npmjs.com/package/@zachleat/table-saw).
+1. Install via [npm](https://www.npmjs.com/package/@zachleat/table-saw): `npm install @zachleat/table-saw`
+1. [Download the source manually from GitHub](https://github.com/zachleat/table-saw/tags) into your project.
+1. Skip this step and use the script directly via a 3rd party CDN (not recommended for production use)
 
-```sh
-npm install @zachleat/table-saw
+### Usage
+
+Make sure you include the `<script>` in your project (choose one of these):
+
+
+```html
+<!-- Host yourself -->
+<script type="module" src="table-saw.js"></script>
+```
+
+```html
+<!-- 3rd party CDN, not recommended for production use -->
+<script type="module" src="https://www.unpkg.com/@zachleat/table-saw@1.0.2/table-saw.js"></script>
+```
+
+```html
+<!-- 3rd party CDN, not recommended for production use -->
+<script type="module" src="https://esm.sh/@zachleat/table-saw@1.0.2"></script>
 ```
 
 ## Features
