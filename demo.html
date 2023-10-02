@@ -7,24 +7,21 @@
 		<title></title>
 		<style>
 		/* Demo styles */
-		resize-er {
-			display: block;
-			overflow: auto;
-			resize: horizontal;
-			border: 4px dotted rgba(0,0,0,.1);
-			margin: 2em 0;
-			padding: 1em;
-		}
 		td {
 			padding: .3em;
 		}
 		</style>
+
+		<!-- tablesaw -->
 		<script type="module" src="table-saw.js"></script>
+
+		<!-- resizer -->
+		<script type="module" src="https://unpkg.com/@zachleat/resizeasaurus@3.0.1/resizeasaurus.js"></script>
 	</head>
 	<body>
 		<header>
 			<h1>Tablesaw Web Component Demo</h1>
-			<p>Return to <a href="https://github.com/zachleat/table-saw/">source code on GitHub</a>.</p>
+			<p>Source code available at <a href="https://github.com/zachleat/table-saw/"><code>https://github.com/zachleat/table-saw/</code></a></p>
 		</header>
 		<main>
 			<h2>Using media queries (viewport based)</h2>
@@ -115,7 +112,7 @@
 			</table-saw>
 
 			<h2>Using container queries</h2>
-			<resize-er>
+			<resize-asaurus>
 				<table-saw breakpoint="(max-width: 30em)" type="container" ratio="1/1" zero-padding>
 					<table>
 						<thead>
@@ -201,7 +198,7 @@
 						</tbody>
 					</table>
 				</table-saw>
-			</resize-er>
+			</resize-asaurus>
 
 			<h2>Multiple child tables in one &lt;table-saw&gt;</h2>
 			<table-saw breakpoint="(max-width: 43.6875em)">
