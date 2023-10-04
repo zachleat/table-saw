@@ -116,8 +116,15 @@ table-saw.${this._identifier} {
 
 			cell.setAttribute(this.attrs.label, labels[cell.cellIndex]);
 
+			let nodeCount = 0;
+			for(let n of cell.childNodes) {
+				// text or element node
+				if(n.nodeType === 3 || n.nodeType === 1) {
+					nodeCount++;
+				}
+			}
 			// wrap if this cell has child nodes for correct grid alignment
-			if(cell.firstElementChild) {
+			if(nodeCount > 1) {
 				let wrapper = document.createElement("div");
 				wrapper.classList.add(this.classes.wrap);
 				while(cell.firstChild) {
