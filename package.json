@@ -1,6 +1,6 @@
 {
   "name": "@zachleat/table-saw",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A small web component for responsive <table> elements.",
   "main": "table-saw.js",
   "scripts": {
