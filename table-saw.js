@@ -101,15 +101,19 @@ table-saw.${this._identifier} {
 	}
 
 	addHeaders() {
-		let labels = Array.from(this.querySelectorAll("thead th")).map(entry => entry.innerText);
+		let labels = Array.from(this.querySelectorAll("thead th")).map(entry => entry.innerText.trim());
 		if(labels.length === 0) {
 			this._needsStylesheet = false;
 			console.error("No `<th>` elements for Tablesaw were found:", this);
 			return;
 		}
 
-		let cells = this.querySelectorAll("tbody td");
+		let cells = this.querySelectorAll("tbody :is(td, th)");
 		for(let cell of cells) {
+			if(!labels[cell.cellIndex]) {
+				continue;
+			}
+
 			cell.setAttribute(this.attrs.label, labels[cell.cellIndex]);
 
 			// wrap if this cell has child nodes for correct grid alignment
