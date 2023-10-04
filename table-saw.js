@@ -13,7 +13,8 @@ class Tablesaw extends HTMLElement {
 			type: "type",
 			ratio: "ratio",
 			label: "data-tablesaw-label",
-			zeropad: "zero-padding"
+			zeropad: "zero-padding",
+			forceTextAlign: "text-align"
 		};
 
 		this.defaults = {
@@ -57,6 +58,9 @@ table-saw.${this._identifier} {
 		display: grid;
 		gap: 0 1em;
 		grid-template-columns: var(--table-saw-ratio, ${this.defaults.ratio});
+	}
+	table-saw.${this._identifier}[${this.attrs.forceTextAlign}] :is(tbody, tfoot) :is(th, td) {
+		text-align: ${this.getAttribute(this.attrs.forceTextAlign) || "left"};
 	}
 	table-saw.${this._identifier}[${this.attrs.zeropad}] :is(tbody, tfoot) :is(th, td) {
 		padding-left: 0;

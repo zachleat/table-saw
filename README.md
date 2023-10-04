@@ -29,12 +29,23 @@ A small structural-only zero-dependency Web Component for responsive `<table>` e
 <table-saw zero-padding>
 	<table><!-- … --></table>
 </table-saw>
+
+<!-- Force left-aligned text when stacked -->
+<table-saw text-align>
+	<table><!-- … --></table>
+</table-saw>
+
+<!-- Use your own text-align value when stacked -->
+<table-saw text-align="right">
+	<table><!-- … --></table>
+</table-saw>
 ```
 
 * Use `breakpoint` attribute to set the breakpoint (default:`(max-width: 39.9375em)`).
 * Use `type="container"` attribute to use container queries instead of viewport-based media queries (default: `type="media"`).
 * Use `ratio` attribute to override the small viewport column ratio (default: `1/2`).
 * Use `zero-padding` attribute to remove small viewport padding on table cells.
+* Use `force-align` attribute to force column text alignment at small viewport.
 
 ## Installation
 
