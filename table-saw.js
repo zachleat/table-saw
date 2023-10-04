@@ -12,6 +12,8 @@ class Tablesaw extends HTMLElement {
 			breakpointBackwardsCompat: "media",
 			type: "type",
 			ratio: "ratio",
+			label: "data-tablesaw-label",
+			zeropad: "zero-padding"
 		};
 
 		this.defaults = {
@@ -20,8 +22,8 @@ class Tablesaw extends HTMLElement {
 		};
 
 		this.classes = {
-			active: "active",
-		};
+			wrap: "tablesaw-wrap"
+		}
 
 		this.props = {
 			ratio: "--table-saw-ratio",
@@ -47,21 +49,18 @@ table-saw.${this._identifier} {
 		display: block;
 		margin-bottom: 1em;
 	}
+	table-saw.${this._identifier} :is(tbody, tfoot) :is(th, td):before {
+		font-weight: bold;
+		content: attr(${this.attrs.label});
+	}
 	table-saw.${this._identifier} :is(tbody, tfoot) :is(th, td) {
 		display: grid;
 		gap: 0 1em;
 		grid-template-columns: var(--table-saw-ratio, ${this.defaults.ratio});
 	}
-	table-saw.${this._identifier}[zero-padding] :is(tbody, tfoot) :is(th, td) {
+	table-saw.${this._identifier}[${this.attrs.zeropad}] :is(tbody, tfoot) :is(th, td) {
 		padding-left: 0;
 		padding-right: 0;
-	}
-
-	table-saw.${this._identifier} .table-saw-label {
-		display: none;
-	}
-	table-saw.${this._identifier} .table-saw-label {
-		display: revert !important;
 	}
 }`;
 	}
@@ -105,20 +104,19 @@ table-saw.${this._identifier} {
 			return;
 		}
 
-		let nodes = [];
-		for(let label of labels) {
-			let l = document.createElement("b");
-			l.classList.add("table-saw-label");
-			l.setAttribute("aria-hidden", true);
-			l.style.display = "none"; // defensive in case the stylesheet insertion fails
-			l.innerText = label;
-
-			nodes.push(l);
-		}
-
 		let cells = this.querySelectorAll("tbody td");
 		for(let cell of cells) {
-			cell.prepend(nodes[cell.cellIndex].cloneNode(true));
+			cell.setAttribute(this.attrs.label, labels[cell.cellIndex]);
+
+			// wrap if this cell has child nodes for correct grid alignment
+			if(cell.firstElementChild) {
+				let wrapper = document.createElement("div");
+				wrapper.classList.add(this.classes.wrap);
+				while(cell.firstChild) {
+					wrapper.appendChild(cell.firstChild);
+				}
+				cell.appendChild(wrapper);
+			}
 		}
 	}
 
