@@ -28,6 +28,7 @@ class Tablesaw extends HTMLElement {
 
 		this.props = {
 			ratio: "--table-saw-ratio",
+			bold: "--table-saw-header-bold",
 		};
 	}
 
@@ -51,13 +52,13 @@ table-saw.${this._identifier} {
 		margin-bottom: 1em;
 	}
 	table-saw.${this._identifier} :is(tbody, tfoot) :is(th, td):before {
-		font-weight: bold;
+		font-weight: var(${this.props.bold});
 		content: attr(${this.attrs.label});
 	}
 	table-saw.${this._identifier} :is(tbody, tfoot) :is(th, td) {
 		display: grid;
 		gap: 0 1em;
-		grid-template-columns: var(--table-saw-ratio, ${this.defaults.ratio});
+		grid-template-columns: var(${this.props.ratio}, ${this.defaults.ratio});
 	}
 	table-saw.${this._identifier}[${this.attrs.forceTextAlign}] :is(tbody, tfoot) :is(th, td) {
 		text-align: ${this.getAttribute(this.attrs.forceTextAlign) || "left"};
@@ -101,7 +102,20 @@ table-saw.${this._identifier} {
 	}
 
 	addHeaders() {
-		let labels = Array.from(this.querySelectorAll("thead th")).map(entry => entry.innerText.trim());
+		let headerCells = this.querySelectorAll("thead th");
+		let labels = Array.from(headerCells).map((cell, index) => {
+			// Set headers to be bold (if headers are bold)
+			if(index === 0) {
+				let styles = window.getComputedStyle(cell);
+				if(styles) {
+					// Copy other styles?
+					let bold = styles.getPropertyValue("font-weight");
+					this.setBold(bold);
+				}
+			}
+
+			return cell.innerText.trim()
+		});
 		if(labels.length === 0) {
 			this._needsStylesheet = false;
 			console.error("No `<th>` elements for Tablesaw were found:", this);
@@ -123,6 +137,7 @@ table-saw.${this._identifier} {
 					nodeCount++;
 				}
 			}
+
 			// wrap if this cell has child nodes for correct grid alignment
 			if(nodeCount > 1) {
 				let wrapper = document.createElement("div");
@@ -132,6 +147,12 @@ table-saw.${this._identifier} {
 				}
 				cell.appendChild(wrapper);
 			}
+		}
+	}
+
+	setBold(bold) {
+		if(bold || bold === "") {
+			this.style.setProperty(this.props.bold, bold);
 		}
 	}
 
