@@ -94,7 +94,7 @@ table-saw.${this._identifier} {
 			let css = this.generateCss(breakpoint, type);
 			sheet.replaceSync(css);
 
-			document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+			document.adoptedStyleSheets.push(sheet);
 
 			Tablesaw.identifiers[this._identifier] = true;
 		}
