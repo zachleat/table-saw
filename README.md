@@ -45,7 +45,7 @@ A small structural-only zero-dependency Web Component for responsive `<table>` e
 * Use `type="container"` attribute to use container queries instead of viewport-based media queries (default: `type="media"`).
 * Use `ratio` attribute to override the small viewport column ratio (default: `1/2`).
 * Use `zero-padding` attribute to remove small viewport padding on table cells.
-* Use `force-align` attribute to force column text alignment at small viewport.
+* Use `text-align` attribute to force column text alignment at small viewport.
 
 ## Installation
 
