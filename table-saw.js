@@ -94,7 +94,11 @@ table-saw.${this._identifier} {
 			let css = this.generateCss(breakpoint, type);
 			sheet.replaceSync(css);
 
-			document.adoptedStyleSheets.push(sheet);
+			if(this.getRootNode().host.shadowRoot) {
+				this.getRootNode().host.shadowRoot.adoptedStyleSheets.push(sheet);
+			} else {
+				document.adoptedStyleSheets.push(sheet);
+			}
 
 			Tablesaw.identifiers[this._identifier] = true;
 		}
