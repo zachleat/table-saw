@@ -113,7 +113,7 @@ table-saw.${this._identifier} {
 				}
 			}
 
-			return cell.innerText.trim()
+			return cell.textContent.trim()
 		});
 		if(labels.length === 0) {
 			this._needsStylesheet = false;
