@@ -113,7 +113,12 @@ table-saw.${this._identifier} {
 				}
 			}
 
-			return cell.innerText.trim()
+			let label = cell.innerText.trim();
+			if (label === "") {
+				label = cell.textContent.trim();
+			}
+
+			return label;
 		});
 		if(labels.length === 0) {
 			this._needsStylesheet = false;
