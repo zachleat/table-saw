@@ -1,5 +1,5 @@
 class Tablesaw extends HTMLElement {
-	static identifiers = {};
+	static dupes = {};
 
 	constructor() {
 		super();
@@ -34,35 +34,35 @@ class Tablesaw extends HTMLElement {
 
 	generateCss(breakpoint, type) {
 		return `
-table-saw.${this._identifier} {
+table-saw.${this._id} {
 	display: block;
 	${type === "container" ? "container-type: inline-size;" : ""}
 }
 
 @${type} ${breakpoint} {
-	table-saw.${this._identifier} thead :is(th, td) {
+	table-saw.${this._id} thead :is(th, td) {
 		position: absolute;
 		height: 1px;
 		width: 1px;
 		overflow: hidden;
 		clip: rect(1px, 1px, 1px, 1px);
 	}
-	table-saw.${this._identifier} :is(tbody, tfoot) tr {
+	table-saw.${this._id} :is(tbody, tfoot) tr {
 		display: block;
 	}
-	table-saw.${this._identifier} :is(tbody, tfoot) :is(th, td):before {
+	table-saw.${this._id} :is(tbody, tfoot) :is(th, td):before {
 		font-weight: var(${this.props.bold});
 		content: attr(${this.attrs.label});
 	}
-	table-saw.${this._identifier} :is(tbody, tfoot) :is(th, td) {
+	table-saw.${this._id} :is(tbody, tfoot) :is(th, td) {
 		display: grid;
 		gap: 0 1em;
 		grid-template-columns: var(${this.props.ratio}, ${this.defaults.ratio});
 	}
-	table-saw.${this._identifier}[${this.attrs.forceTextAlign}] :is(tbody, tfoot) :is(th, td) {
+	table-saw.${this._id}[${this.attrs.forceTextAlign}] :is(tbody, tfoot) :is(th, td) {
 		text-align: ${this.getAttribute(this.attrs.forceTextAlign) || "left"};
 	}
-	table-saw.${this._identifier}[${this.attrs.zeropad}] :is(tbody, tfoot) :is(th, td) {
+	table-saw.${this._id}[${this.attrs.zeropad}] :is(tbody, tfoot) :is(th, td) {
 		padding-left: 0;
 		padding-right: 0;
 	}
@@ -70,7 +70,7 @@ table-saw.${this._identifier} {
 	}
 
 	connectedCallback() {
-		// Cut the mustard
+		// Cut-the-mustard
 		// https://caniuse.com/mdn-api_cssstylesheet_replacesync
 		if(!("replaceSync" in CSSStyleSheet.prototype)) {
 			return;
@@ -87,20 +87,20 @@ table-saw.${this._identifier} {
 		let breakpoint = this.getAttribute(this.attrs.breakpoint) || this.getAttribute(this.attrs.breakpointBackwardsCompat) || this.defaults.breakpoint;
 		let type = this.getAttribute(this.attrs.type) || "media";
 
-		this._identifier = `ts_${type.slice(0, 1)}${breakpoint.replace(/[^a-z0-9]/gi, "_")}`;
-		this.classList.add(this._identifier);
+		this._id = `ts_${type.slice(0, 1)}${breakpoint.replace(/[^a-z0-9]/gi, "_")}`;
+		this.classList.add(this._id);
 
-		if(!Tablesaw.identifiers[this._identifier]) {
+		if(!Tablesaw.dupes[this._id]) {
 			let css = this.generateCss(breakpoint, type);
 			sheet.replaceSync(css);
 
-			if(this.getRootNode().host.shadowRoot) {
-				this.getRootNode().host.shadowRoot.adoptedStyleSheets.push(sheet);
-			} else {
-				document.adoptedStyleSheets.push(sheet);
-			}
+			let root = this.getRootNode();
+			root.adoptedStyleSheets.push(sheet);
 
-			Tablesaw.identifiers[this._identifier] = true;
+			// only add to global de-dupe if not a shadow root
+			if(root.host && root !== root.host.shadowRoot) {
+				Tablesaw.dupes[this._id] = true;
+			}
 		}
 	}
 
@@ -124,9 +124,10 @@ table-saw.${this._identifier} {
 
 			return label;
 		});
+
 		if(labels.length === 0) {
 			this._needsStylesheet = false;
-			console.error("No `<th>` elements for Tablesaw were found:", this);
+			console.error("No `<th>` elements found:", this);
 			return;
 		}
 

@@ -373,6 +373,62 @@
 					</tbody>
 				</table>
 			</table-saw>
+
+			<h2>Hidden in details</h2>
+			<details>
+				<summary>Expand to show</summary>
+				<table-saw breakpoint="(max-width: 30em)">
+					<table>
+						<thead>
+							<tr>
+								<th>Pricing Strategies</th>
+								<th>Hourly-based</th>
+								<th>Project-based</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><strong>Ideal projects or clients</strong></td>
+								<td>
+									Small projects, or projects subject to change due to timelines
+									or requirements.
+								</td>
+								<td>Projects with clear expectations and scope.</td>
+							</tr>
+						</tbody>
+					</table>
+				</table-saw>
+			</details>
+
+			<h2>Shadow root</h2>
+			<script type="module">
+			const host = document.querySelector("#myHost");
+			const shadow = host.attachShadow({ mode: "open" });
+			const div = document.createElement("div");
+			div.innerHTML = `<table-saw breakpoint="(max-width: 30em)">
+				<table>
+					<thead>
+						<tr>
+							<th>Pricing Strategies</th>
+							<th>Hourly-based</th>
+							<th>Project-based</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Ideal projects or clients</strong></td>
+							<td>
+								Small projects, or projects subject to change due to timelines
+								or requirements.
+							</td>
+							<td>Projects with clear expectations and scope.</td>
+						</tr>
+					</tbody>
+				</table>
+			</table-saw>`;
+			shadow.appendChild(div);
+			</script>
+			<div id="myHost"></div>
 		</main>
 	</body>
 </html>
